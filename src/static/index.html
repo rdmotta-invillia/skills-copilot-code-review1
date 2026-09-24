@@ -12,13 +12,18 @@
     />
   </head>
   <body>
-    <div class="announcement-banner" lang="pt-BR">
-     </div>
+    <div id="announcement-banner" class="announcement-banner hidden" lang="pt-BR">
+      <div id="announcement-banner-messages" class="announcement-banner-messages"></div>
+    </div>
     <header>
       <h1>Mergington High School</h1>
       <h2>Atividades Extracurriculares</h2>
       <div id="user-controls">
         <div id="user-status">
+          <button id="announcements-button" class="icon-button" aria-haspopup="dialog" aria-controls="announcements-modal">
+            <span class="announcement-icon" aria-hidden="true">📢</span>
+            <span>Anúncios</span>
+          </button>
           <button id="login-button" class="icon-button">
             <span class="user-icon">👤</span>
             <span>Entrar</span>
@@ -133,6 +138,49 @@
           <button type="submit">Entrar</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <!-- Announcements Modal -->
+    <div id="announcements-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="announcements-modal-title">
+      <div class="modal-content announcements-modal-content">
+        <span class="close-announcements-modal" role="button" tabindex="0" aria-label="Fechar">&times;</span>
+        <h3 id="announcements-modal-title">Anúncios</h3>
+
+        <form id="announcement-form" class="announcement-form hidden">
+          <input type="hidden" id="announcement-id" value="" />
+          <div class="form-group">
+            <label for="announcement-message">Mensagem:</label>
+            <textarea id="announcement-message" required maxlength="500" rows="3" placeholder="Digite a mensagem do anúncio"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="announcement-start-date">Data de início (opcional):</label>
+              <input type="date" id="announcement-start-date" />
+            </div>
+            <div class="form-group">
+              <label for="announcement-expiration-date">Data de expiração:</label>
+              <input type="date" id="announcement-expiration-date" required />
+            </div>
+          </div>
+          <div class="announcement-form-actions">
+            <button type="button" id="cancel-announcement-form" class="cancel-btn">Cancelar</button>
+            <button type="submit" id="save-announcement-button">Salvar Anúncio</button>
+          </div>
+          <div id="announcement-form-message" class="hidden message"></div>
+        </form>
+
+        <div id="announcements-toolbar" class="announcements-toolbar hidden">
+          <button type="button" id="new-announcement-button">+ Novo Anúncio</button>
+        </div>
+
+        <div id="announcements-list" class="announcements-list">
+          <p>Carregando anúncios...</p>
+        </div>
+
+        <p id="announcements-login-hint" class="announcements-login-hint hidden">
+          Faça login como professor para gerenciar os anúncios.
+        </p>
       </div>
     </div>
 
